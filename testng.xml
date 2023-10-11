@@ -3,11 +3,7 @@
 <suite name="All Test Suite">
     <test  name="1st">
         <classes>
-            <class name="TestCases.LoginTest">
-                <methods>
-                    <include name="test"/>
-                </methods>
-            </class>
+            <class name="TestCases.LoginTest"/>
         </classes>
     </test>
 </suite>

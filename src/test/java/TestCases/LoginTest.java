@@ -1,14 +1,19 @@
 package TestCases;
 
 
+import PageObjects.Homepage;
+import PageObjects.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.time.Duration;
+
+import static Utilities.util.TimestampEmail;
 
 public class LoginTest
 {
@@ -37,14 +42,35 @@ public class LoginTest
     }
 
     @Test
-    public void test()
+    public void validdeails()
     {
-        driver.findElement(By.xpath("//span[contains(text(),'My Account')]")).click();
-        driver.findElement(By.linkText("Login")).click();
-        driver.findElement(By.id("input-email")).sendKeys("sharathchandra@gmail.com");
-        driver.findElement(By.id("input-password")).sendKeys("Security@#1");
-        driver.findElement(By.xpath("//input[@type='submit']")).click();
+        Homepage homepage=new Homepage(driver);
+        homepage.SelectLoginPage();
+        LoginPage loginPage=new LoginPage(driver);
 
+
+
+    }
+    @Test
+    public void Invalid_deatils()
+    {
+        Homepage homepage=new Homepage(driver);
+        homepage.SelectLoginPage();
+        LoginPage loginPage=new LoginPage(driver);
+//        ???????
+        String text= driver.findElement(By.xpath("//body/div[@id='account-login']/div[1]")).getText();
+        Assert.assertEquals(text,"Warning: No match for E-Mail Address and/or Password.","element not found");
+
+    }
+
+    public void No_deatils()
+    {
+        Homepage homepage=new Homepage(driver);
+        homepage.SelectLoginPage();
+        LoginPage loginPage=new LoginPage(driver);
+//       ??????
+        String text= driver.findElement(By.xpath("//body/div[@id='account-login']/div[1]")).getText();
+        Assert.assertEquals(text,"Warning: No match for E-Mail Address and/or Password.","element not found");
 
     }
 
